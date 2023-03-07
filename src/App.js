@@ -111,6 +111,21 @@ class App extends React.Component {
     }));
   };
 
+  excludeCard = (item) => {
+    const { cards } = this.state;
+    const newArrayCards = cards.filter((card) => card.cardName !== item.cardName);
+
+    this.setState({
+      cards: newArrayCards,
+    });
+
+    if (item.cardTrunfo) {
+      this.setState({
+        hasTrunfo: false,
+      });
+    }
+  };
+
   render() {
     const {
       cardName,
@@ -154,6 +169,8 @@ class App extends React.Component {
         />
         <CardList
           cards={ cards }
+          hasTrunfo={ hasTrunfo }
+          excludeCard={ this.excludeCard }
         />
       </div>
     );
