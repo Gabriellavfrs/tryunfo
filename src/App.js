@@ -19,6 +19,7 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      hasTrunfo: false,
       cards: [],
     };
   }
@@ -78,7 +79,6 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
     } = this.state;
-
     const cardGame = {
       cardName,
       cardDescription,
@@ -89,6 +89,12 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
     };
+
+    if (cardTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    }
 
     this.setState((prevState) => ({
       cards: [...prevState.cards, cardGame],
@@ -115,6 +121,7 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       isSaveButtonDisabled,
+      hasTrunfo,
     } = this.state;
     return (
       <div>
@@ -130,6 +137,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }
+          hasTrunfo={ hasTrunfo }
         />
         <Card
           cardName={ cardName }
