@@ -1,16 +1,15 @@
 .form-container {
   background-color: white;
-  color: black;
   border-radius: 1rem;
-  padding: 0.5rem;
-  text-align: center;
-  font-size: 1.1rem;
   box-shadow: 0 0 5px 3px #838181;
-  width: 25rem;
-  padding: 2rem;
+  color: black;
   display: flex;
   flex-direction: column;
+  font-size: 1.1rem;
   gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+  width: 25rem;
 }
 
 .form-container label {
@@ -18,32 +17,33 @@
   display: flex;
 }
 
-.form-container label > input, select {
+.form-container label > input, select, textarea {
   flex: 1;
   margin-left: 0.5rem;
   padding: 0.5rem;
 }
 
 .form-container button {
-  box-shadow: inset 0px -3px 7px 0px #29bbff;
   background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
   background-color: #2dabf9;
-  border-radius: 3px;
   border: 1px solid #0b0e07;
-  display: inline-block;
+  border-radius: 3px;
+  box-shadow: inset 0 -3px 7px 0 #29bbff;
+  color: white;
   cursor: pointer;
-  color: #ffffff;
-  font-family: Arial;
+  display: inline-block;
+  font-family: Arial , Helvetica , sans-serif;
   font-size: 15px;
   padding: 9px 23px;
   text-decoration: none;
-  text-shadow: 0px 1px 0px #263666;
+  text-shadow: 0 1px 0 #263666;
 }
 
 .form-container button:hover {
   background: linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
   background-color: #0688fa;
 }
+
 .form-container button:active {
   position: relative;
   top: 1px;

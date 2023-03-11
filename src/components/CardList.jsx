@@ -4,33 +4,44 @@ import Card from './Card';
 
 class CardList extends Component {
   render() {
-    const { cards, excludeCard } = this.props;
+    const { cards, excludeCard, handleChangeSearch, searchInputValue } = this.props;
 
     return (
-      <div className="card-list">
-        {cards.map((card) => (
-          <div key={ card.cardName } className="card-item">
-            <Card
-              cardName={ card.cardName }
-              cardDescription={ card.cardDescription }
-              cardAttr1={ card.cardAttr1 }
-              cardAttr2={ card.cardAttr2 }
-              cardAttr3={ card.cardAttr3 }
-              cardImage={ card.cardImage }
-              cardRare={ card.cardRare }
-              cardTrunfo={ card.cardTrunfo }
-            />
-            <button
-              type="button"
-              data-testid="delete-button"
-              onClick={ () => excludeCard(card) }
-              // sempre que houver param -> arrow function
-            >
-              Excluir
-            </button>
-          </div>
-        ))}
-      </div>
+      <>
+        <input
+          type="text"
+          name="search"
+          placeholder="Procurar carta"
+          data-testid="name-filter"
+          onChange={ handleChangeSearch }
+        />
+        <div className="card-list">
+          {cards
+            .filter((card) => card.cardName.includes(searchInputValue))
+            .map((card) => (
+              <div key={ card.cardName } className="card-item">
+                <Card
+                  cardName={ card.cardName }
+                  cardDescription={ card.cardDescription }
+                  cardAttr1={ card.cardAttr1 }
+                  cardAttr2={ card.cardAttr2 }
+                  cardAttr3={ card.cardAttr3 }
+                  cardImage={ card.cardImage }
+                  cardRare={ card.cardRare }
+                  cardTrunfo={ card.cardTrunfo }
+                />
+                <button
+                  type="button"
+                  data-testid="delete-button"
+                  onClick={ () => excludeCard(card) }
+                  // sempre que houver param -> arrow function
+                >
+                  Excluir
+                </button>
+              </div>
+            ))}
+        </div>
+      </>
     );
   }
 }
@@ -48,6 +59,8 @@ const cardProps = PropTypes.shape({
 CardList.propTypes = {
   cards: PropTypes.arrayOf(cardProps).isRequired,
   excludeCard: PropTypes.func.isRequired,
+  handleChangeSearch: PropTypes.func.isRequired,
+  searchInputValue: PropTypes.string.isRequired,
 };
 
 export default CardList;

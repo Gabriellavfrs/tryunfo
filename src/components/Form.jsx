@@ -33,7 +33,7 @@ class Form extends React.Component {
           />
         </label>
         <label>
-          Descrição da Carta
+          Descrição
           <textarea
             name="cardDescription"
             cols="30"
@@ -44,7 +44,7 @@ class Form extends React.Component {
           />
         </label>
         <label>
-          Primeiro atributo da carta
+          Atributo 01
           <input
             type="number"
             name="cardAttr1"
@@ -54,7 +54,7 @@ class Form extends React.Component {
           />
         </label>
         <label>
-          Segundo atributo da carta
+          Atributo 02
           <input
             type="number"
             name="cardAttr2"
@@ -64,7 +64,7 @@ class Form extends React.Component {
           />
         </label>
         <label>
-          Terceiro atributo da carta
+          Atributo 03
           <input
             type="number"
             name="cardAttr3"

@@ -23,6 +23,7 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       hasTrunfo: false,
       cards: [],
+      searchInputValue: '',
     };
   }
 
@@ -127,6 +128,12 @@ class App extends React.Component {
     }
   };
 
+  handleChangeSearch = ({ target }) => {
+    this.setState({
+      searchInputValue: target.value,
+    });
+  };
+
   render() {
     const {
       cardName,
@@ -140,6 +147,7 @@ class App extends React.Component {
       isSaveButtonDisabled,
       hasTrunfo,
       cards,
+      searchInputValue,
     } = this.state;
 
     return (
@@ -180,6 +188,8 @@ class App extends React.Component {
           <CardList
             cards={ cards }
             excludeCard={ this.excludeCard }
+            searchInputValue={ searchInputValue }
+            handleChangeSearch={ this.handleChangeSearch }
           />
         </div>
       </main>
