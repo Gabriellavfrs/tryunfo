@@ -25,6 +25,7 @@ class App extends React.Component {
       cards: [],
       searchInputValue: '',
       cardRareFilter: 'todas',
+      cardTrunfoFilter: false,
     };
   }
 
@@ -131,8 +132,9 @@ class App extends React.Component {
 
   handleChangeFilter = ({ target }) => {
     const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
-      [name]: target.value,
+      [name]: value,
     });
   };
 
@@ -151,6 +153,7 @@ class App extends React.Component {
       cards,
       searchInputValue,
       cardRareFilter,
+      cardTrunfoFilter,
     } = this.state;
 
     return (
@@ -195,6 +198,7 @@ class App extends React.Component {
             onInputChange={ this.onInputChange }
             handleChangeFilter={ this.handleChangeFilter }
             cardRareFilter={ cardRareFilter }
+            cardTrunfoFilter={ cardTrunfoFilter }
           />
         </div>
       </main>

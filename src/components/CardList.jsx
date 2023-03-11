@@ -10,6 +10,7 @@ class CardList extends Component {
       searchInputValue,
       cardRareFilter,
       handleChangeFilter,
+      cardTrunfoFilter,
     } = this.props;
 
     return (
@@ -20,25 +21,36 @@ class CardList extends Component {
           placeholder="Procurar carta"
           data-testid="name-filter"
           onChange={ handleChangeFilter }
+          disabled={ cardTrunfoFilter }
         />
         <select
           name="cardRareFilter"
           data-testid="rare-filter"
           value={ cardRareFilter }
           onChange={ handleChangeFilter }
+          disabled={ cardTrunfoFilter }
         >
           <option>todas</option>
           <option>normal</option>
           <option>raro</option>
           <option>muito raro</option>
         </select>
+        <label>
+          Super Trunfo
+          <input
+            type="checkbox"
+            name="cardTrunfoFilter"
+            data-testid="trunfo-filter"
+            checked={ cardTrunfoFilter }
+            onChange={ handleChangeFilter }
+          />
+        </label>
         <div className="card-list">
           {cards
-            .filter((card) => (
-              cardRareFilter !== 'todas'
-                ? card.cardName.includes(searchInputValue)
-                && card.cardRare === cardRareFilter
-                : card.cardName.includes(searchInputValue)))
+            .filter((card) => card.cardName.includes(searchInputValue))
+            .filter((card) => (cardRareFilter !== 'todas'
+              ? card.cardRare === cardRareFilter : card))
+            .filter((card) => (cardTrunfoFilter ? card.cardTrunfo : card))
             .map((card) => (
               <div key={ card.cardName } className="card-item">
                 <Card
@@ -83,6 +95,7 @@ CardList.propTypes = {
   searchInputValue: PropTypes.string.isRequired,
   handleChangeFilter: PropTypes.func.isRequired,
   cardRareFilter: PropTypes.string.isRequired,
+  cardTrunfoFilter: PropTypes.bool.isRequired,
 };
 
 export default CardList;
