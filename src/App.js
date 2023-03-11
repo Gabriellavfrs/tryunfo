@@ -24,6 +24,7 @@ class App extends React.Component {
       hasTrunfo: false,
       cards: [],
       searchInputValue: '',
+      cardRareFilter: 'todas',
     };
   }
 
@@ -128,9 +129,10 @@ class App extends React.Component {
     }
   };
 
-  handleChangeSearch = ({ target }) => {
+  handleChangeFilter = ({ target }) => {
+    const { name } = target;
     this.setState({
-      searchInputValue: target.value,
+      [name]: target.value,
     });
   };
 
@@ -148,6 +150,7 @@ class App extends React.Component {
       hasTrunfo,
       cards,
       searchInputValue,
+      cardRareFilter,
     } = this.state;
 
     return (
@@ -189,7 +192,9 @@ class App extends React.Component {
             cards={ cards }
             excludeCard={ this.excludeCard }
             searchInputValue={ searchInputValue }
-            handleChangeSearch={ this.handleChangeSearch }
+            onInputChange={ this.onInputChange }
+            handleChangeFilter={ this.handleChangeFilter }
+            cardRareFilter={ cardRareFilter }
           />
         </div>
       </main>

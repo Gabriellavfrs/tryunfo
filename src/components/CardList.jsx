@@ -4,20 +4,41 @@ import Card from './Card';
 
 class CardList extends Component {
   render() {
-    const { cards, excludeCard, handleChangeSearch, searchInputValue } = this.props;
+    const {
+      cards,
+      excludeCard,
+      searchInputValue,
+      cardRareFilter,
+      handleChangeFilter,
+    } = this.props;
 
     return (
       <>
         <input
           type="text"
-          name="search"
+          name="searchInputValue"
           placeholder="Procurar carta"
           data-testid="name-filter"
-          onChange={ handleChangeSearch }
+          onChange={ handleChangeFilter }
         />
+        <select
+          name="cardRareFilter"
+          data-testid="rare-filter"
+          value={ cardRareFilter }
+          onChange={ handleChangeFilter }
+        >
+          <option>todas</option>
+          <option>normal</option>
+          <option>raro</option>
+          <option>muito raro</option>
+        </select>
         <div className="card-list">
           {cards
-            .filter((card) => card.cardName.includes(searchInputValue))
+            .filter((card) => (
+              cardRareFilter !== 'todas'
+                ? card.cardName.includes(searchInputValue)
+                && card.cardRare === cardRareFilter
+                : card.cardName.includes(searchInputValue)))
             .map((card) => (
               <div key={ card.cardName } className="card-item">
                 <Card
@@ -59,8 +80,9 @@ const cardProps = PropTypes.shape({
 CardList.propTypes = {
   cards: PropTypes.arrayOf(cardProps).isRequired,
   excludeCard: PropTypes.func.isRequired,
-  handleChangeSearch: PropTypes.func.isRequired,
   searchInputValue: PropTypes.string.isRequired,
+  handleChangeFilter: PropTypes.func.isRequired,
+  cardRareFilter: PropTypes.string.isRequired,
 };
 
 export default CardList;
