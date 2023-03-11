@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Form.css';
 
 class Form extends React.Component {
   render() {
@@ -19,7 +20,8 @@ class Form extends React.Component {
     } = this.props;
 
     return (
-      <form>
+      <form className="form-container">
+        <h2>Adicione uma nova carta</h2>
         <label>
           Nome da Carta
           <input

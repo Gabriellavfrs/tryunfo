@@ -7,9 +7,9 @@ class CardList extends Component {
     const { cards, excludeCard } = this.props;
 
     return (
-      <div>
+      <div className="card-list">
         {cards.map((card) => (
-          <div key={ card.cardName }>
+          <div key={ card.cardName } className="card-item">
             <Card
               cardName={ card.cardName }
               cardDescription={ card.cardDescription }

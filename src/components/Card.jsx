@@ -44,8 +44,12 @@ class Card extends Component {
             <p data-testid="attr3-card">{ cardAttr3 }</p>
           </div>
         </section>
-        <section data-testid="rare-card">{ cardRare }</section>
-        { cardTrunfo && <section data-testid="trunfo-card">Super Trunfo</section> }
+        <div className="rare-container">
+          <section data-testid="rare-card">
+            { `Raridade: ${cardRare}` }
+          </section>
+          { cardTrunfo && <div data-testid="trunfo-card">Super Trunfo</div> }
+        </div>
       </div>
     );
   }
